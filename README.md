@@ -6,7 +6,7 @@ Notice:NsMeridian maybe deprecated in the future, and changes to MeTools / Merid
 
 Guide:
 
-1. MeToolkit not needed to declare, this process is automaticaly when, set up the script tag in HTML page head block (optimal is      first).
+1. MeToolkit not needed to declare, this process is automaticaly when, set up the script tag in HTML page head block (optimal it      first).
 
 2.The use tool:
   use an DOM element on a page with has any 'attributename';
