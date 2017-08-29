@@ -11,7 +11,7 @@ Guide:
 2.The Use tool:
   use an DOM element on a page with has any 'attributename';
 
-  Use('container');
+     Use('container');
 
    let: container is the element id attributevalue.
 
