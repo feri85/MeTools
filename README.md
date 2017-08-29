@@ -8,7 +8,7 @@ Guide:
 
 1. MeToolkit not needed to declare, this process is automaticaly when, set up the script tag in HTML page head block (optimal it      first).
 
-2.The use tool:
+2.The Use tool:
   use an DOM element on a page with has any 'attributename';
 
   Use('container');
