@@ -17,8 +17,63 @@ Guide:
 
     -to modify: 
      Use('container').name[alt,id,src, .... etc]='value';
-     container.modify();
      
 3.The Craft tool:
 
-(!declaration continued!)
+  Craft elements as object declaration.
+  
+  Phase 1 create group of item gap.
+  
+  let: T is the container of the object tree.
+       We have opportunity for define complex hiearchy like the HTML structures.
+       In this case the object name has to imply it of the HTML element tagname, seperate with an _ sign.
+       If the member poperty has set, the 'marked' element added to window object as a component, referenced
+       with its membername.
+       
+       Tese hiearchy has the opponent of the html construction
+  
+    var T={
+      div_1:{
+        id:'firstbox',
+        text:'this is the first div element',
+        member:'chat',
+        style:'position:absolute;width:300px;height:200px;border: 1px solid black;',
+        input_0:{
+          type:'button',
+          name:'detect',
+          value:'click on',
+        },
+        div_0:{
+          id:'theme',
+          p_0:{
+          }
+        }
+      },
+      h2_0:{
+        id:'title',
+      },
+      p_0:{
+        id:'textguide',
+      }
+    }
+    
+    or
+         var D=new Object();
+          D['script_0']={};
+    
+    Usage: 
+    
+        Craft((T|D),[placement]);
+   
+     
+    Phase 2 create an single item (component).
+        
+        Member has  automaticaly set on the window 'layer'.
+        
+        setMember('article>div',{
+                  id:'issues',
+                  text:'Other dialogs',
+        });
+
+    
+    ................
