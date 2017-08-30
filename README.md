@@ -91,5 +91,31 @@ Guide:
           Craft(Smart,'myelement');
           
 4. Element Emule tool:
+
+    This process mounted one or more items, rendered an member object(s) to an predefined HTML markup item on a page.
     
+        eg.
+        
+          <div>
+            <p id='message'>Have you just a minute or a second or....</p>
+            <h1 id='nothing'>'so it nothing'</h1>
+            <input type='button' name='push' value='hit'/>
+          </div>
+   
+       Usage: Emule('message','nothing','push');
+       
+       And all component will set on window 'layer'.
+       
+       Now do some supplement to the member propertyes:
+       
+          a, change HTML item attributes:
+             nothing.id='checked';
+             ...
+             nothing.modify();
+             
+              or
+             
+             nothing.member.id='checked';
+             
+           b, delete items: so its some way to do, this 
     ................
