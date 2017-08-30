@@ -68,12 +68,28 @@ Guide:
      
     Phase 2 create an single item (component).
         
-        Member has  automaticaly set on the window 'layer'.
+      Note! Member has  automaticaly set on the window 'layer'.
         
         setMember('article>div',{
                   id:'issues',
                   text:'Other dialogs',
         });
-
+      
+      The first parameter consist of two component. First is the component name, the second seperated with > to set the HTML tag.The second parameter is an object like the abowe example.
+      All of these parameter are obligatory to turn up.
+      
+     Phase 3 other way to apply the object sintax.
+     
+         let: var Smart=new Object(); is the block;
+         
+         eg.
+          
+          Smart['Form_0']={};
+          Smart['Form_0'].name='thisform';
+          Smart['Form_0'].method='POST';
+          
+          Craft(Smart,'myelement');
+          
+4. Element Emule tool:
     
     ................
