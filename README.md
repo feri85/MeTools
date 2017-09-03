@@ -106,7 +106,7 @@ Guide:
        
        And all component will set on window 'layer'.
        
-       Now do some supplement to the member propertyes:
+       Now do some supplement to the member propertyes: (not only for to the 'emulated').
        
           a, change HTML item attributes:
              nothing.id='checked';
@@ -145,5 +145,21 @@ Guide:
                 ingredients('restore') all 'shielded' items appended on a page.
                 
             
-            
+   5. The Pattern tool:  
+   
+      The pattern tool can manipulate quckly of the node(s) hiearchy tree, like 'batch process', and so modify the web page appereance radicaly, on for an event call, or other command.
+      
+      let: 
+         <div id='score'>
+            <p id='message'>yur results..</p>
+            <input type='button' name='push' value='hit'/>
+            <input type='button' name='ok' value='hit'/>
+            <input type='text' name='notice' value='hit'/>
+          </div>
+          <div id='trash'>
+          </div>
+          <form id='cola'>
+          </Form>
+      
+      Usage: Pattern('trash>cola','score>trash','cola>notice>push>ok');
     ................
