@@ -1,4 +1,4 @@
-﻿var Me=function(){
+var Me=function(){
 	Me.n=0;
 	Me.rootlv_handle=null;
 	this.err=false;
