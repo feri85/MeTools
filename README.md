@@ -196,4 +196,4 @@ Guide:
       
 7. The Behave tool: 
 
-      Well in the old Ns version has included, but in the current not installed yet, If I regard it as justified, I will installed here in the future versions of Meridian Toolkit.
+      Well in the old Ns version has included, but in the current has not installed yet, If I regard it as justified, I will installed here in the future versions of Meridian Toolkit.
