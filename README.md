@@ -118,4 +118,32 @@ Guide:
              nothing.member.id='checked';
              
            b, delete items: so its some way to do, this 
+           
+            -delete all: remove all of content from a selected member, and from the refered element on the page.
+            
+              let:  cast of an <form> component.
+              
+              eg.   cast.remove('all');
+              
+            -delete only: removes an HTML item rereferenced member object only. (unmount).
+            
+              eg. cast.remove('only');
+              
+            -delete the current block: removes all of the selected element child object and their references, it delete the container element too.
+            
+              eg. cast.remove();  /default/
+              
+              
+           c, shielding an element or an group in a block:
+           
+              this method hide, or restore member elements and childnodes on a page.
+           
+              eg. ingredients _> <ul>
+              
+                ingredients('hide') disapeared;
+                
+                ingredients('restore') all 'shielded' items appended on a page.
+                
+            
+            
     ................
