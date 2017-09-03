@@ -132,13 +132,12 @@ Guide:
             -delete the current block: removes all of the selected element child object and their references, it delete the container element too.
             
               eg. cast.remove();  /default/
-              
-              
+                
            c, shielding an element or an group in a block:
            
               this method hide, or restore member elements and childnodes on a page.
            
-              eg. ingredients _> <ul>
+              eg. ingredients -> <ul>
               
                 ingredients('hide') disapeared;
                 
@@ -164,4 +163,34 @@ Guide:
       Usage: 
           
             Pattern('trash>cola','score>trash','cola>notice>push>ok');
+            
+            
+6. The Load tool:
+
+      This tool load css or java/ecmascripts from an external files in a document, and may call 'external' functions itself in the load event. 
+      
+      a, if need to call javascripts from an source:
+      
+         There is three way to use this function:
+      
+           -loads a modul without any function called (functon calls on the external module):
+              
+              loadModul(path/external.esx);
+            
+           -loads with function calls, without 'adapted' parameters:
+              
+              loadModul(path/external.esx,'currentfunc');
+              
+           -loads the full setting, we need to give some parameters:
+           
+              loadModul(path/external.esx,'somefunc',[rock,'paper',{Scissors}];
+         
+       b, if needed some css declarations:
+          
+            In this way, the simple example demonstrated below:
+            
+              loadModul(path/externalstyle.css);
+              
+             in this case our functions needed only one parameter and the extension of a file.
+      
     ................
