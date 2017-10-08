@@ -2,6 +2,7 @@ var Me=function(){
 	Me.n=0;
 	Me.rootlv_handle=null;
 	this.err=false;
+	window.usePerformed=false;
 	Me.bw=function(){
 		if(document.all){
 			return true;
@@ -140,7 +141,7 @@ Me.prototype.principials={
 					uint.removeChild(uint.firstChild);
 				}while(uint.firstChild);	
 			};
-			if(type=='only'){											//deletes an member reference only. (member unmounted)
+			if(type=='only'){															//deletes an member reference only. (member unmounted)
 				trydelete(obj);
 			};
 		}
@@ -206,14 +207,14 @@ Me.prototype.Tool=function(){
 		5:'Parameter incorrect!',
 		6:'Except Filename!',
 		7:'Not found an object!'
-	}
+	};
 	this.Q=function(valuename){
 		var b=0;
 		var requested=[];
 		var typednodes=[];
 		var tags=valuename.match(/<(.*)>/);
-		switch(document.readyState){
-			case 'complete':
+		
+		if(document.readyState=='complete'){
 			if(tags==null || tags.length<1){
 				for(var n=0; n<that.sys().length; n++){
 					attr=that.sys()[n].attributes;
@@ -240,13 +241,29 @@ Me.prototype.Tool=function(){
 						requested.push(that.sys()[o]);
 						err=false;
 					}
-					else{
+					/*else{
 						err=true;
-					};
+					};*/
 				};
 			};
-			break;
 		}
+		if(document.body==null){
+			if(tags){
+				var node=tags[1];
+				for(var n in that.sys()[1].childNodes){
+					if(parseInt(n)){
+						if(that.sys()[1].childNodes[parseInt(n)].tagName==node.toUpperCase()){
+							requested.push(that.sys()[1].childNodes[parseInt(n)]);
+							err=false;
+						}
+						/*else{
+							err=true;
+						}*/
+					}	
+				}
+			}
+		}
+		
 		if(requested==null || requested.length==0){
 			err=true;
 		};
@@ -254,6 +271,7 @@ Me.prototype.Tool=function(){
 			return requested;
 		}
 		else{
+			
 			errlog(true,define_error,7);
 		};
 	};
@@ -315,8 +333,8 @@ Me.prototype.Tool=function(){
 		if(!placement){
 			placement=document.body;
 		}
-		else if(placement='head'){
-			placement=document.getElementsByTagName('HEAD')[0];
+		else if(placement=='head'){
+			placement=that.sys()[1];//document.getElementsByTagName('HEAD')[0];
 		}
 		else{
 			if(!that.Q(placement)instanceof Array){
@@ -440,6 +458,7 @@ Me.prototype.Tool=function(){
 					}
 				}
 			}
+			
 			return target;
 		};
 		function initializename(rebound){
@@ -464,9 +483,11 @@ Me.prototype.Tool=function(){
 					D['script_0']={};
 					D['script_0'].type='text/javascript';
 					D['script_0'].component=initializename(srctype);
-					craftmodell(D);
+					craftmodell(D,'head');//(D)
 					var platform=window[initializename(srctype)].member;
+					
 					that.sys()[1].insertBefore(platform,eqobj('<script>').nextSibling);
+					//that.sys()[1].insertBefore(platform,eqobj('<script>').previousSibling);
 					platform.src=srctype;
 					if(handler && !proplist && typeof handler=='string'){
 						if(!bw()){
@@ -536,9 +557,9 @@ Me.prototype.Tool=function(){
 
 Me.prototype.Initialize={
 	accessMeridian:window['nsMeridian']=new Me.prototype.Tool,
-	accessQ:window['Use']=nsMeridian.Q,							//this tool sets for use an DOM object with has any attributes;
+	accessQ:window['Use']=nsMeridian.Q,						//this tool sets for use an DOM object with has any attributes;
 	accessC:window['Craft']=nsMeridian.C,						//Create new members;
-	accessMset:window['setMember']=nsMeridian.C.setM,			//Set an member in body element.
+	accessMemberSet:window['setMember']=nsMeridian.C.setM,		//Set an member in body element.
 	accessP:window['Pattern']=nsMeridian.P,						//Set hiearchy options, modify elements 'position' in DOM levels;
 	accessL:window['loadModul']=nsMeridian.L,					//Loads an external ecmascript module;
 	accessE:window['Emule']=nsMeridian.E,						//Emule mebers from a document element
