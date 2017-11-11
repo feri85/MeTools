@@ -70,17 +70,16 @@ Me.prototype.principials={
 		memberattr.value=this.value;
 		this.member.attributes.setNamedItem(memberattr);
 	},
-	backup:null,
+	shd_backup:{},
 	shd_apply:function(member,mode){
 		this.member=member;
-		if(mode && mode=='hide' && this.backup==null){
-			this.backup=this.member.parentNode;
-			this.backup.removeChild(this.member);
-			
+		var propvalue=this.member.attributes.component.value;
+		if(mode && mode=='hide' && this.shd_backup instanceof Object){
+			this.shd_backup[propvalue]=this.member.parentNode;
+			this.shd_backup[propvalue].removeChild(this.member);	
 		}
-		if(mode && mode=='restore' && this.backup!=null){
-			this.backup.appendChild(this.member);
-			this.backup=null;
+		if(mode && mode=='restore' && this.shd_backup[propvalue]){
+			this.shd_backup[propvalue].appendChild(this.member);
 		}
 	},
 	node_setprops:function(member,memberobj){
@@ -560,12 +559,11 @@ Me.prototype.Tool=function(){
 
 Me.prototype.Initialize={
 	accessMeridian:window['nsMeridian']=new Me.prototype.Tool,
-	accessQ:window['Use']=nsMeridian.Q,						//this tool sets for use an DOM object with has any attributes;
+	accessQ:window['Use']=nsMeridian.Q,							//this tool sets for use an DOM object with has any attributes;
 	accessC:window['Craft']=nsMeridian.C,						//Create new members;
-	accessMemberSet:window['setMember']=nsMeridian.C.setM,				//Set an member in body element.
+	accessMemberSet:window['setMember']=nsMeridian.C.setM,		//Set an member in body element.
 	accessP:window['Pattern']=nsMeridian.P,						//Set hiearchy options, modify elements 'position' in DOM levels;
 	accessL:window['loadModul']=nsMeridian.L,					//Loads an external ecmascript module;
 	accessE:window['Emule']=nsMeridian.E,						//Emule mebers from a document element
 	accessGroup:window['getGroup']=nsMeridian.E.getGroup,
 }
-
