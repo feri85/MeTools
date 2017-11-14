@@ -75,8 +75,11 @@ Me.prototype.principials={
 		this.member=member;
 		var propvalue=this.member.attributes.component.value;
 		if(mode && mode=='hide' && this.shd_backup instanceof Object){
+			if(this.member.parentNode){
 			this.shd_backup[propvalue]=this.member.parentNode;
-			this.shd_backup[propvalue].removeChild(this.member);	
+			
+				this.shd_backup[propvalue].removeChild(this.member);
+			}			
 		}
 		if(mode && mode=='restore' && this.shd_backup[propvalue]){
 			this.shd_backup[propvalue].appendChild(this.member);
@@ -567,3 +570,4 @@ Me.prototype.Initialize={
 	accessE:window['Emule']=nsMeridian.E,						//Emule mebers from a document element
 	accessGroup:window['getGroup']=nsMeridian.E.getGroup,
 }
+
