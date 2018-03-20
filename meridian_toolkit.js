@@ -76,8 +76,7 @@ Me.prototype.principials={
 		var propvalue=this.member.attributes.component.value;
 		if(mode && mode=='hide' && this.shd_backup instanceof Object){
 			if(this.member.parentNode){
-			this.shd_backup[propvalue]=this.member.parentNode;
-			
+				this.shd_backup[propvalue]=this.member.parentNode;
 				this.shd_backup[propvalue].removeChild(this.member);
 			}			
 		}
@@ -213,12 +212,11 @@ Me.prototype.Tool=function(){
 		6:'Except Filename!',
 		7:'Not found an object!'
 	};
-	this.Q=function(valuename){
+	this.Q=function(valuename,group){
 		var b=0;
 		var requested=[];
 		var typednodes=[];
 		var tags=valuename.match(/<(.*)>/);
-		
 		if(document.readyState=='complete'){
 			if(tags==null || tags.length<1){
 				for(var n=0; n<that.sys().length; n++){
@@ -251,6 +249,25 @@ Me.prototype.Tool=function(){
 					};*/
 				};
 			};
+			
+			if(group){ 
+			//get the group of elements with an spcified attributevalue;
+			//modes:1 /g  returns of array with requested elements;
+				requested=[];
+				for(var p=0; p<that.sys().length; p++){
+					var prop=that.sys()[p].attributes;
+					for(var u=0; u<prop.length; u++){
+					if(prop!=null && prop.length>0){
+						if(prop[u].value==valuename){
+							if(group=='/g'){
+								requested.push(that.sys()[p]);
+							}
+							err=false;
+							}
+						}
+					}
+				};
+			}
 		}
 		if(document.body==null){
 			if(tags){
@@ -276,8 +293,7 @@ Me.prototype.Tool=function(){
 			return requested;
 		}
 		else{
-			
-			errlog(true,define_error,7);
+			errlog();
 		};
 	};
 	this.C=function(obj,placement){
@@ -298,7 +314,7 @@ Me.prototype.Tool=function(){
 				props=document.createAttribute(key);
 				
 				if(typeof current!='undefined'){
-					for(var p in current){
+					for(var p in current){	
 						if(p.indexOf('_')<0 && p!='sections' && p!='text' &&p!='component'){
 							new utility.set_nodeprop(craftnode,p,current[p])
 						}
@@ -360,8 +376,8 @@ Me.prototype.Tool=function(){
 				var cracked=order[p].match(/(.*?)>*(\w|[0-9]|[^\x00-\x7F]+){1,}/g);
 				for(var n=0; n<cracked.length; n++){
 					cracked[n]=cracked[n].replace('>','');
-					var first=eq(cracked[0]);
-					var uintlist=[];
+					var first=(eq(cracked[0]))? eq(cracked[0]) : window[''+cracked[0]].member;
+					//var uintlist=[];
 					try{
 						if(eq(cracked[n]) instanceof Array){
 							if(!bw()){
@@ -369,6 +385,7 @@ Me.prototype.Tool=function(){
 								for(var c=0; c<eq(cracked[n]).length; c++){
 									first.appendChild(uints[c]);
 								}
+								
 							}
 							else{
 								var tracks=eq(cracked[n]);
@@ -379,7 +396,12 @@ Me.prototype.Tool=function(){
 						}
 						else{
 							if(n>0){
-								first.appendChild(eq(cracked[n]));
+								if(window[''+cracked[n]].member){
+									first.appendChild(window[''+cracked[n]].member)
+								}
+								else{
+									first.appendChild(eq(cracked[n]));
+								}
 							}
 						}
 					}
@@ -454,12 +476,14 @@ Me.prototype.Tool=function(){
 		var errcode=null;
 		var D=new Object();
 		var eq=that.Q;
+		var bw=Me.bw;
 		function eqobj(tagname){
 			var target=null;
-			if(eq(tagname)){
+			if(eq(tagname)){	
 				for(var q=0; q<eq(tagname).length;q++){
-					if(eq(tagname)[q].parentNode.tagName=='HEAD'){
+					if(eq(tagname)[q].parentNode.tagName=='HEAD'){	
 						target=eq(tagname)[q];
+						
 					}
 				}
 			}
@@ -490,7 +514,6 @@ Me.prototype.Tool=function(){
 					D['script_0'].component=initializename(srctype);
 					craftmodell(D,'head');//(D)
 					var platform=window[initializename(srctype)].member;
-					
 					that.sys()[1].insertBefore(platform,eqobj('<script>').nextSibling);
 					//that.sys()[1].insertBefore(platform,eqobj('<script>').previousSibling);
 					platform.src=srctype;
@@ -570,4 +593,10 @@ Me.prototype.Initialize={
 	accessE:window['Emule']=nsMeridian.E,						//Emule mebers from a document element
 	accessGroup:window['getGroup']=nsMeridian.E.getGroup,
 }
+
+
+//Copyright:	(c) GPL3 protected license.
+//Author:    	 Ferenc Szabó  szaboferenc008@gmail.com.
+
+//This utility was inspirated by Macromedia (Adobe) Director environment, but it's an different object based 'miniclip'.
 
